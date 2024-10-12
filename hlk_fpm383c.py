@@ -562,7 +562,18 @@ class HLK_FPM383C:
                 self.logger.error(
                     f"Auto registration failed ({response.status}): {status_desc}"
                 )
-                return None
+                # Recoverable mistakes, continue the registration process
+                if response.status not in [
+                    b"\x00\x00\x00\x06",
+                    b"\x00\x00\x00\x08",
+                    b"\x00\x00\x00\x09",
+                    b"\x00\x00\x00\x0E",
+                    b"\x00\x00\x00\x0F",
+                    b"\x00\x00\x00\x10",
+                    b"\x00\x00\x00\x11",
+                    b"\x00\x00\x00\x12",
+                ]:
+                    return None
 
             pressed_num = response.data[0]
             finger_id_to_save = int.from_bytes(response.data[1:3], byteorder="big")

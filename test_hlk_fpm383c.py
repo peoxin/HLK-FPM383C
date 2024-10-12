@@ -18,20 +18,20 @@ device.init_comm()
 
 # print(device.check_connection())
 # print(device.get_fp_module_id())
-print(device.get_stored_template_num())
+# print(device.get_stored_template_num())
 # print(device.get_matching_threshold())
 # print(device.get_gain())
 
 # device.set_system_policy(rotation360=True)
 # print(device.get_system_policy())
 
-# device.set_led(mode="off", color="none")
+# device.set_led(mode="off", color="red")
 
-# device.reset_fp_module()
+# print(device.reset_fp_module())
 
 # print(device.detect_finger_pressed())
 
-print(device.report_stored_templates())
+# print(device.report_stored_templates())
 # print(device.check_finger_id_exists(0))
 # print(device.check_finger_id_exists(1))
 
@@ -56,21 +56,23 @@ print(device.report_stored_templates())
 #         cur_progress = ret["progress"]
 #         device.register_fingerprint_async(press_idx)
 
-# device.save_fingerprint_template(4)
+# device.save_fingerprint_template(1)
 # time.sleep(0.5)
 # print(device.check_template_saving_result())
 
 # device.confirm_fingerprint_registration()
 # print(device.check_registration_confirmation_result())
 
-# print(device.auto_register_and_save(finger_id=0, num_press=6, need_lift=True))
+# device.delete_template_sync(finger_id=0)
+print(device.auto_register_and_save(finger_id=0, num_press=6, need_lift=True))
 
 # device.delete_fingerprint_template(4)
 # time.sleep(0.5)
 # print(device.check_template_deletion_result())
 # print(device.report_stored_templates())
 
-# device.delete_fingerprint_template_sync(finger_id=0)
+# device.delete_template_sync(finger_id=[0, 1, 2], mode="multi")
+# time.sleep(0.5)
 # print(device.report_stored_templates())
 
 # 执行命令的同时要按下手指；查看结果应该等待一段时间
